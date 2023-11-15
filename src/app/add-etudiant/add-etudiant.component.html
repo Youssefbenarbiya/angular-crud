@@ -1,0 +1,37 @@
+<div class="container">
+  <h2>Ajouter un étudiant</h2>
+  <div class="col">
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label for="cin">CIN</label>
+      <input type="number" [(ngModel)]="newEtu.cin" name="cin" id="cin" class="form-control" required>
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label for="nom">Nom</label>
+      <input type ="text" [(ngModel)]="newEtu.nom" name="nom" id="nom" class="form-control" required>
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label for="prenom">Prénom</label>
+      <input type="text" [(ngModel)]="newEtu.prenom" name="prenom" id="prenom" class="form-control" required>
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label for="dateNaissance">Date de naissance</label>
+      <input type="date" [(ngModel)]="newEtu.dateNaiss" name="dateNaissance" id="dateNaissance" class="form-control" required>
+    </div>
+   
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <label>Groupe</label>
+        <select class="form-control form-control-lg" name="grpid" [(ngModel)]="idgrpModified">
+          <option *ngFor="let g of groups" [value]="g.idgrp">{{ g.nomGrp }}</option>
+        </select>
+      </div>
+      <div class="col-sm-2 col-md-2 col-lg-2">
+        <label for="moyenne">Moyenne</label>
+        <input type="number" [(ngModel)]="newEtu.moy" name="moyenne" id="moyenne" class="form-control" required>
+      </div>
+ 
+  </div>
+  <br />
+  <div class="mt-2">
+    <button type="submit" class="btn btn-success" (click)="ajouterEtudiant()">Ajouter</button>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <h1>Liste des étudiants</h1>
+      <table width="100%">
+        <thead>
+          <tr>
+            <th>CIN</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Date de naissance</th>
+            <th>Groupe</th>
+            <th>Moyenne</th>
+            <th>Resultat</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let e of tab_etu"  >
+          <tr >
+            <td>{{ e.cin }}</td>
+            <td>{{ e.nom }}</td>
+            <td>{{ e.prenom }}</td>
+            <td>{{ e.dateNaiss | date : "dd/MM/yyyy" }}</td>
+            <td>{{e.grp.nomGrp}}</td>
+            <td *ngIf="e.moy !== undefined && e.moy >= 10">{{ e.moy | number:'1.2' }}</td>
+            <td [ngStyle]="redoubleStyle" *ngIf="e.moy < 10">{{ e.moy}}</td>
+
+            <td [ngStyle]="redoubleStyle" *ngIf="e.moy < 10">Redouble</td>
+            <td *ngIf="e.moy >= 10">Admit</td>
+
+            <td>
+              <a class="btn btn-danger" (click)="suppEtudiant(e)">
+                <img src="../assets/img/delete.png" height="32" width="32"></a>
+
+       
+              
+              <a class="btn btn-warning" [routerLink]="['/updateEtudiant',e.cin]">
+                <img src="../assets/img/edit.png" height="32" width="32"></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

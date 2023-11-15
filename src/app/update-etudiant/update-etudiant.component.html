@@ -1,0 +1,39 @@
+<div class="container">
+  <div>
+    <h2>Modifier un étudiant</h2>
+  </div>
+  <form>
+    <div class="row">
+      <div class="col-sm-2 col-md-2 col-lg-2">
+        <label>CIN</label>
+        <input readonly type="text" [(ngModel)]="etudiantCourant.cin" name="cin" class="form-control">
+      </div>
+      <div class="col-sm-4 col-md4 col-lg-4">
+        <label>Nom</label>
+        <input type="text" [(ngModel)]="etudiantCourant.nom" name="nom" class="form-control">
+      </div>
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <label>Prénom</label>
+        <input type="text" [(ngModel)]="etudiantCourant.prenom" name="prenom" class="form-control">
+      </div>
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <label>Date de naissance</label>
+        <input type="date" ngModel="etudiantCourant.dateNaiss | date: 'yyyy-MM-dd'" (ngModelChange)="etudiantCourant.dateNaiss = $event" name="dateNaiss" class="form-control">
+    </div>
+    
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <label>Groupe</label>
+        <select class="form-control form-control-lg" name="grpid" [(ngModel)]="idgrpModified">
+          <option *ngFor="let g of groups" [value]="g.idgrp">{{ g.nomGrp }}</option>
+        </select>
+      </div>
+      <div class="col-sm-2 col-md-2 col-lg-2">
+        <label>Moyenne</label>
+        <input type="number" [(ngModel)]="etudiantCourant.moy" name="moy" class="form-control">
+      </div>
+    </div>
+    <div class="mt-2">
+      <button type="submit" class="btn btn-success" (click)="modifEtudiant()">Modifier</button>
+    </div>
+  </form>
+</div>

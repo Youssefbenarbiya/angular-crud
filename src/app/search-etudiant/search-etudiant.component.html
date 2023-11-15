@@ -1,0 +1,68 @@
+<form name="f1">
+  Choisir un critère de recherche :
+  <input type="radio" [(ngModel)]="critere" value="nom" name="critere"> par nom
+  <input type="radio" [(ngModel)]="critere" value="groupe" name="critere"> par groupe
+  <input type="radio" [(ngModel)]="critere" value="moy" name="critere"> par moy
+  <input type="radio" [(ngModel)]="critere" value="dateNaissance" name="critere"> par date de naissance
+</form>
+<br>
+
+<div [ngSwitch]="critere">
+  <form name="f2" class="form-inline">
+    <div class="form-group mx-sm-3 mb-2 mt-2" *ngSwitchCase="'nom'">
+      <label>Nom à chercher </label>
+      <input type="text" class="form-control" name="nom" #nomEtu (keyup)="chercherParNom(nomEtu.value)">
+    </div>
+    <div class="form-group" *ngSwitchCase="'groupe'">
+      Groupe <select class="form-control form-control-lg" name="grpid" [(ngModel)]="grpidRech" (change)="chercherParGrp()">
+        <option value="0">Tous</option>
+        <option *ngFor="let gr of list_grp" [value]="gr.idgrp">{{gr.nomGrp}}</option>
+      </select>
+    </div>
+
+      <div class="form-group" *ngSwitchCase="'moy'">
+        Moyenne <input type="text" class="form-control" name="moy" #moyenne (keyup)="chercherParMoy(moyenne.value)">
+      </div>
+      <div class="form-group" *ngSwitchCase="'dateNaissance'">
+        Date de naissance
+        <input type="date" class="form-control" name="dateNaissance" #dob (change)="chercherParDateNaissance(dob.value)">
+      </div>
+      
+      
+
+  </form>
+</div>
+
+<div class="container">
+    <div class="card shadow mb-4">
+      <div class="card-body">
+        <h1>Liste des étudiants</h1>
+        <table width="100%" >
+          <thead >
+            <tr>
+              <th>CIN</th>
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>Date de naissance</th>
+              <th>Groupe</th>
+              <th>Moyenne</th>
+          
+            </tr>
+          </thead>
+          <tbody *ngFor="let e of list_etu"  >
+            <tr >
+              <td>{{ e.cin }}</td>
+              <td>{{ e.nom }}</td>
+              <td>{{ e.prenom }}</td>
+              <td>{{ e.dateNaiss | date : "dd/MM/yyyy" }}</td>
+              <td>{{e.grp.nomGrp}}</td>
+              <td >{{ e.moy }}</td>
+            
+  
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
